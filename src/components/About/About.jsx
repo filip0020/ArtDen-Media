@@ -13,11 +13,26 @@ const About = ({ language }) => {
         >
           {language === 'ro' ? 'Despre mine' : 'About me'}
         </motion.h2>
-        <div className="about-content">
+
+        {/* Bloc poza + text */}
+        <div className="about-info">
+          <motion.div
+            className="about-image"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <img
+              src="/Den-profil.jpg"
+              alt={language === 'ro' ? 'Editor Video' : 'Video Editor'}
+            />
+          </motion.div>
+
           <motion.div
             className="about-text"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
@@ -31,30 +46,23 @@ const About = ({ language }) => {
                 ? 'Mă specializez în editarea de materiale video scurte, perfecte pentru TikTok, Instagram Reels, YouTube Shorts și reclame video scurte. Fiecare proiect este abordat cu atenție la detalii și creativitate, asigurându-mă că reflectă viziunea și personalitatea clientului.'
                 : 'I specialize in editing short video material, perfect for TikTok, Instagram Reels, YouTube Shorts and short video ads. Each project is approached with attention to detail and creativity, ensuring that it reflects the vision and personality of the client.'}
             </p>
-            <div className="stats">
-              <div className="stat">
-                <h3>2+</h3>
-                <p>{language === 'ro' ? 'Ani experiență' : 'Years of experience'}</p>
-              </div>
-              <div className="stat">
-                <h3>200+</h3>
-                <p>{language === 'ro' ? 'Proiecte' : 'Projects'}</p>
-              </div>
-              <div className="stat">
-                <h3>50+</h3>
-                <p>{language === 'ro' ? 'Clienți mulțumiți' : 'Satisfied clients'}</p>
-              </div>
-            </div>
           </motion.div>
-          <motion.div
-            className="about-image"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <img src="/Den-profil.jpg" alt={language === 'ro' ? 'Editor Video' : 'Video Editor'} />
-          </motion.div>
+        </div>
+
+        {/* Stats dedesubt */}
+        <div className="stats">
+          <div className="stat">
+            <h3>2+</h3>
+            <p>{language === 'ro' ? 'Ani experiență' : 'Years of experience'}</p>
+          </div>
+          <div className="stat">
+            <h3>200+</h3>
+            <p>{language === 'ro' ? 'Proiecte' : 'Projects'}</p>
+          </div>
+          <div className="stat">
+            <h3>50+</h3>
+            <p>{language === 'ro' ? 'Clienți mulțumiți' : 'Satisfied clients'}</p>
+          </div>
         </div>
       </div>
     </section>

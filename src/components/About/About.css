@@ -5,30 +5,54 @@
 
 .about-content {
   display: flex;
+  flex-direction: column; /* poză + text stivuite vertical */
   align-items: center;
-  gap: 4rem;
-  position: relative;
-  z-index: 2;
+  text-align: center;
+  gap: 1rem;
+  margin-bottom: 3rem; /* spațiu până la stats */
+}
+
+.about-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10%;
+}
+
+.about-image img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  border: var(--gradient-lawanda) 3px solid;
 }
 
 .about-text {
-  flex: 1;
+  max-width: 600px;
+  text-align: center;
 }
 
 .about-text p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
+/* stats sub bloc */
 .stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between; /* întinse pe toată lățimea */
+  flex-direction: row-reverse; /* de la dreapta la stânga */
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .stat {
+  flex: 1;
   text-align: center;
   padding: 1.5rem;
   background: var(--card-bg);
@@ -44,7 +68,7 @@
 }
 
 .stat h3 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   color: var(--accent);
   font-weight: 700;
@@ -56,47 +80,23 @@
   opacity: 0.9;
 }
 
-.about-image {
-  flex: 1;
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.about-image img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
+/* responsive */
 @media (max-width: 992px) {
-  .about-content {
-    flex-direction: column-reverse;
-    gap: 3rem;
-  }
-
   .stats {
-    grid-template-columns: 1fr;
+    align-items: center;
     gap: 1.5rem;
   }
 
-  .about-image {
-    text-align: center;
-    justify-content: center;
+  .about-image img {
+    width: 130px;
+    height: 130px;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 450px) {
   .stats {
-    grid-template-columns: 1fr;
-  }
-
-  .stat {
-    padding: 1rem;
-  }
-
-  .stat h3 {
-    font-size: 2rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
   }
 }

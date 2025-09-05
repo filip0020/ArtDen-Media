@@ -1,5 +1,7 @@
 :root {
   --gradient-start: #5a2d9c;
+  --gradient-lawanda: #af7aff;
+  --gradient-start-dark: #0b0415;
   --gradient-end: #070211;
   --accent: #ff6b9d;
   --accent-dark: #ff4081;
@@ -20,7 +22,7 @@ body {
   line-height: 1.6;
   color: var(--text-light);
   background: linear-gradient(
-    135deg,
+    90deg,
     var(--gradient-start) 0%,
     var(--gradient-end) 100%
   );
@@ -98,6 +100,10 @@ h2::after {
   background-color: var(--text-light);
   color: var(--gradient-end);
   transform: translateY(-3px);
+}
+
+a:hover {
+  color: inherit;
 }
 
 /* Animații */

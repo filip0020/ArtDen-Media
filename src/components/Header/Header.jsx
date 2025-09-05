@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { FaGlobe } from 'react-icons/fa';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import './Header.css';
 
 const Header = ({ activeSection, scrollToSection, language, toggleLanguage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,20 +26,18 @@ const Header = ({ activeSection, scrollToSection, language, toggleLanguage }) =>
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
-        <div className="logo">
+        <a className="logo" href='#'>
           <img src="/Logo.jpg" alt="ArtDenMedia Logo" />
           <span>ArtDen<span>Media</span></span>
-        </div>
+        </a>
 
-        <nav className={`nav ${isMobileMenuOpen ? 'open' : ''}`}>
+        {/* Nav clasic doar pentru desktop */}
+        <nav className="nav desktop-nav">
           <ul>
             {navItems.map((item) => (
               <li key={item.id}>
                 <button
-                  onClick={() => {
-                    scrollToSection(item.id);
-                    setIsMobileMenuOpen(false);
-                  }}
+                  onClick={() => scrollToSection(item.id)}
                   className={activeSection === item.id ? 'active' : ''}
                 >
                   {language === 'ro' ? item.ro : item.en}
@@ -55,14 +53,8 @@ const Header = ({ activeSection, scrollToSection, language, toggleLanguage }) =>
             <span>{language === 'ro' ? 'EN' : 'RO'}</span>
           </button>
 
-          <button
-            className="mobile-menu-toggle"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          {/* BurgerMenu pentru mobil */}
+          <BurgerMenu navItems={navItems} scrollToSection={scrollToSection} language={language} />
         </div>
       </div>
     </header>

@@ -8,7 +8,7 @@
 }
 
 .review-card {
-  background: white;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -26,10 +26,6 @@
   margin-bottom: 1rem;
 }
 
-.star {
-  color: #ddd;
-}
-
 .star.filled {
   color: #ffe600;
 }
@@ -37,11 +33,11 @@
 .review-card p {
   font-style: italic;
   margin-bottom: 1rem;
-  color: black;
+  color: #fff;
 }
 
 .review-card h4 {
-  color: var(--lavender-dark);
+  color: var(--background);
 }
 
 @media (max-width: 768px) {
