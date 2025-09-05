@@ -20,17 +20,34 @@ const Contact = ({ language }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
-    setIsSubmitted(true);
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
+    try {
+      const response = await fetch("https://contact-backend.onrender.com/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        alert("Eroare la trimiterea mesajului");
+      }
+    } catch (error) {
+      console.error("Eroare:", error);
+      alert("Nu s-a putut trimite mesajul");
+    }
   };
+
 
   const socialPlatforms = [
     { id: 'instagram', name: 'Instagram', icon: <FaInstagram />, color: '#E1306C', url: 'https://instagram.com/artdenmedia' },
