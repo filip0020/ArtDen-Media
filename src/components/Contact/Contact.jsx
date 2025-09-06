@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from 'emailjs-com';
 import { FaInstagram, FaTiktok, FaFacebook, FaTelegram, FaPaperPlane, FaUser, FaEnvelope, FaComment } from 'react-icons/fa';
 import './Contact.css';
 
@@ -12,6 +13,10 @@ const Contact = ({ language }) => {
   const [selectedPlatform, setSelectedPlatform] = useState('instagram');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const serviceID = "service_lff04v9";
+  const templateID = "template_fsk6aqo";
+  const publicKey = "QkQQNgNmK3PtmRukN";
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -20,34 +25,27 @@ const Contact = ({ language }) => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("https://contact-backend.onrender.com/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message
+    };
 
-      const data = await response.json();
-
-      if (data.success) {
+    emailjs.send(serviceID, templateID, templateParams, publicKey)
+      .then(() => {
         setIsSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: '', email: '', message: '' });
 
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 3000);
-      } else {
-        alert("Eroare la trimiterea mesajului");
-      }
-    } catch (error) {
-      console.error("Eroare:", error);
-      alert("Nu s-a putut trimite mesajul");
-    }
+        setTimeout(() => setIsSubmitted(false), 3000);
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        alert("A apărut o eroare, încearcă din nou!");
+      });
   };
-
 
   const socialPlatforms = [
     { id: 'instagram', name: 'Instagram', icon: <FaInstagram />, color: '#E1306C', url: 'https://instagram.com/artdenmedia' },
